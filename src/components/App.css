@@ -8,10 +8,13 @@ body,
 
 /* Messages.js */
 .messages {
-  height: 440px;
+  height: 52vh;
   overflow-y: scroll;
 }
-
+.messages__progress{
+height:48vh ;
+overflow-y: scroll;
+}
 /* MessageForm.js */
 .message__form {
   position: fixed !important;
@@ -26,4 +29,12 @@ body,
 .message__self {
   border-left: 2px solid orange;
   padding-left: 8px;
+}
+
+.message__image{
+  padding: 1em;
+}
+
+.progress__bar{
+  margin: .3rem 0 0 0  !important;
 }
