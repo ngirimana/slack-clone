@@ -38,3 +38,6 @@ overflow-y: scroll;
 .progress__bar{
   margin: .3rem 0 0 0  !important;
 }
+.menu{
+  padding-bottom: 2em;
+}
