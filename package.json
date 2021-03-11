@@ -9,6 +9,7 @@
     "dotenv": "^8.2.0",
     "emoji-mart": "^3.0.1",
     "firebase": "^8.2.9",
+    "firebase-tools": "^9.6.0",
     "md5": "^2.3.0",
     "mime-types": "^2.1.29",
     "moment": "^2.29.1",
