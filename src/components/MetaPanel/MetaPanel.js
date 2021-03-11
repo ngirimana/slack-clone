@@ -5,14 +5,14 @@ import {
   Header,
   Icon,
   Image,
-  List,
+  List
 } from "semantic-ui-react";
 
 class MetaPanel extends React.Component {
   state = {
     channel: this.props.currentChannel,
     privateChannel: this.props.isPrivateChannel,
-    activeIndex: 0,
+    activeIndex: 0
   };
 
   setActiveIndex = (event, titleProps) => {
@@ -22,10 +22,9 @@ class MetaPanel extends React.Component {
     this.setState({ activeIndex: newIndex });
   };
 
-  formatCount = (num) =>
-    num > 1 || num === 0 ? `${num} posts` : `${num} post`;
+  formatCount = num => (num > 1 || num === 0 ? `${num} posts` : `${num} post`);
 
-  displayTopPosters = (posts) =>
+  displayTopPosters = posts =>
     Object.entries(posts)
       .sort((a, b) => b[1] - a[1])
       .map(([key, val], i) => (
@@ -37,7 +36,7 @@ class MetaPanel extends React.Component {
           </List.Content>
         </List.Item>
       ))
-      .slice(0, 5);
+      .slice(0, 2);
 
   render() {
     const { activeIndex, privateChannel, channel } = this.state;
