@@ -175,7 +175,7 @@ class Register extends React.Component {
               <Form.Input
                 fluid
                 name="passwordConfirmation"
-                icon="repeat"
+                icon="lock"
                 iconPosition="left"
                 placeholder="Password Confirmation"
                 onChange={this.handleChange}
