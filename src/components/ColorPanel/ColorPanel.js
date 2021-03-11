@@ -2,6 +2,7 @@ import React from "react";
 import firebase from "../../firebase";
 import { connect } from "react-redux";
 import { setColors } from "../../actions";
+// prettier-ignore
 import { Sidebar, Menu, Divider, Button, Modal, Icon, Label, Segment } from "semantic-ui-react";
 import { SliderPicker } from "react-color";
 
@@ -12,7 +13,7 @@ class ColorPanel extends React.Component {
     secondary: "",
     user: this.props.currentUser,
     usersRef: firebase.database().ref("users"),
-    userColors: [],
+    userColors: []
   };
 
   componentDidMount() {
@@ -21,17 +22,25 @@ class ColorPanel extends React.Component {
     }
   }
 
-  addListener = (userId) => {
+  componentWillUnmount() {
+    this.removeListener();
+  }
+
+  removeListener = () => {
+    this.state.usersRef.child(`${this.state.user.uid}/colors`).off();
+  };
+
+  addListener = userId => {
     let userColors = [];
-    this.state.usersRef.child(`${userId}/colors`).on("child_added", (snap) => {
+    this.state.usersRef.child(`${userId}/colors`).on("child_added", snap => {
       userColors.unshift(snap.val());
       this.setState({ userColors });
     });
   };
 
-  handleChangePrimary = (color) => this.setState({ primary: color.hex });
+  handleChangePrimary = color => this.setState({ primary: color.hex });
 
-  handleChangeSecondary = (color) => this.setState({ secondary: color.hex });
+  handleChangeSecondary = color => this.setState({ secondary: color.hex });
 
   handleSaveColors = () => {
     if (this.state.primary && this.state.secondary) {
@@ -45,16 +54,16 @@ class ColorPanel extends React.Component {
       .push()
       .update({
         primary,
-        secondary,
+        secondary
       })
       .then(() => {
         console.log("Colors added");
         this.closeModal();
       })
-      .catch((err) => console.error(err));
+      .catch(err => console.error(err));
   };
 
-  displayUserColors = (colors) =>
+  displayUserColors = colors =>
     colors.length > 0 &&
     colors.map((color, i) => (
       <React.Fragment key={i}>
@@ -127,4 +136,7 @@ class ColorPanel extends React.Component {
   }
 }
 
-export default connect(null, { setColors })(ColorPanel);
+export default connect(
+  null,
+  { setColors }
+)(ColorPanel);
